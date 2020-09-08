@@ -19,10 +19,9 @@ public class Book {
 
 	private String title;
 	private String isbn;
-	
+
 	@ManyToMany
-	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-	inverseJoinColumns = @JoinColumn(name = "author_id"))
+	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors;
 
 	// For JPA
@@ -69,8 +68,13 @@ public class Book {
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
 	}
-	
-	
+
+	/** toString implementation */
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", authors=" + authors + "]";
+	}
+
 	/** Equals and Hash Code **/
 	@Override
 	public int hashCode() {
@@ -79,7 +83,7 @@ public class Book {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

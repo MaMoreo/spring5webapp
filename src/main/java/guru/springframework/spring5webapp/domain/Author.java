@@ -17,7 +17,7 @@ public class Author {
 
 	private String firstName;
 	private String lastName;
-	
+
 	@ManyToMany(mappedBy = "authors")
 	private Set<Book> books;
 
@@ -66,7 +66,13 @@ public class Author {
 		this.books = books;
 	}
 
-	/** Hash Code and Equals must be override (USE ID)*/
+	/** To String Implementation */
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", books=" + books + "]";
+	}
+
+	/** Hash Code and Equals must be override (USE ID) */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
