@@ -5,8 +5,10 @@ import org.springframework.stereotype.Component;
 
 import guru.springframework.spring5webapp.domain.Author;
 import guru.springframework.spring5webapp.domain.Book;
+import guru.springframework.spring5webapp.domain.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
+import guru.springframework.spring5webapp.repositories.PublisherRepository;
 
 /**
  * Spring looks for instances of CommanLineRunner and runs them at booting time
@@ -16,13 +18,15 @@ import guru.springframework.spring5webapp.repositories.BookRepository;
 @Component // This tells Spring, this is a Spring managed Component
 public class BootStrapData implements CommandLineRunner {
 
-	// Autowiring
+	// Autowiring in the Constructor
 	private final AuthorRepository authorRepository;
 	private final BookRepository bookRepository;
+	private final PublisherRepository publisherRepository;
 
-	public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+	public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
 		this.authorRepository = authorRepository;
 		this.bookRepository = bookRepository;
+		this.publisherRepository = publisherRepository;
 	}
 
 	@Override
@@ -45,7 +49,11 @@ public class BootStrapData implements CommandLineRunner {
 		authorRepository.save(rod);
 		bookRepository.save(book2);
 
+		Publisher publisher = new Publisher("Anagrama", "Una calle", "Madrid", "MD", "A1234");
+		publisherRepository.save(publisher);
+		
 		System.out.println("Started in Bootstrap");
 		System.out.println("Number of Books: " + bookRepository.count());
+		System.out.println("Number of Publishers: " + publisherRepository.count());
 	}
 }
