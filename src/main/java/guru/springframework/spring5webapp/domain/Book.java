@@ -1,5 +1,6 @@
 package guru.springframework.spring5webapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -22,17 +23,16 @@ public class Book {
 
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private Set<Author> authors;
+	private Set<Author> authors = new HashSet<>();
 
 	// For JPA
 	public Book() {
 	}
 
-	public Book(String title, String isbn, Set<Author> authors) {
+	public Book(String title, String isbn) {
 		super();
 		this.title = title;
 		this.isbn = isbn;
-		this.authors = authors;
 	}
 
 	/** Getters and Setters */
