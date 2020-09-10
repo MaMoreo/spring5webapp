@@ -50,10 +50,20 @@ public class BootStrapData implements CommandLineRunner {
 		bookRepository.save(book2);
 
 		Publisher publisher = new Publisher("Anagrama", "Una calle", "Madrid", "MD", "A1234");
+		//publisherRepository.save(publisher);
+		
+		book.setPublisher(publisher);
+		publisher.getBooks().add(book);
+		book2.setPublisher(publisher);
+		publisher.getBooks().add(book2);
+		
 		publisherRepository.save(publisher);
 		
 		System.out.println("Started in Bootstrap");
 		System.out.println("Number of Books: " + bookRepository.count());
 		System.out.println("Number of Publishers: " + publisherRepository.count());
+		// This throws an error due to lazy loading failing. It can be fixed adding (fetching = EAGER) to the OneToMany Relationship
+		System.out.println("Number of Books published: " + publisherRepository.findById(publisher.getId()).get().getBooks().size() );
+		System.out.println("Number of Books published: " + publisher.getBooks().size());
 	}
 }
