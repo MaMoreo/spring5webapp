@@ -21,7 +21,7 @@ public class BookController {
 		
 		model.addAttribute("books", bookRepository.findAll()); // add an attribute to the model
 		
-		return "books"; // This is the VIEW name. The model is sent to the View
+		return "books/list"; // This is the VIEW name. The model is sent to the View
 	}
 
 }
