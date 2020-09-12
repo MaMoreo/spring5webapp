@@ -69,7 +69,7 @@ public class Author {
 	/** To String Implementation */
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", books=" + books + "]";
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 	/** Hash Code and Equals must be override (USE ID) */
